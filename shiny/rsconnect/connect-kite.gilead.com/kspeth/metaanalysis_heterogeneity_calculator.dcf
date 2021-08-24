@@ -1,0 +1,12 @@
+name: metaanalysis_heterogeneity_calculator
+title: MetaAnalysis_Heterogeneity_Calculator
+username: kspeth
+account: kspeth
+server: connect-kite.gilead.com
+hostUrl: https://connect-kite.gilead.com/__api__
+appId: 192
+bundleId: 676
+url: https://connect-kite.gilead.com/meta_analysis_heterogeneity_calculator/
+when: 1629815201.77554
+asMultiple: FALSE
+asStatic: FALSE

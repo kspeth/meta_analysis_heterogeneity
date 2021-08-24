@@ -23,7 +23,7 @@ ui <- navbarPage("Meta-Analysis Heterogeneity Statistic Calculator",
                                         h5("Developed by Qinghua Song and Kelly Speth, Kite Data and Statistical Sciences"),
                                         h5("In collaboration with Jennifer Sun, Allen Xue"),
                                         h6("Version date: 25-Aug-2021"),
-                                        h6("Following Higgins and Thompson (2002), this application estimates heterogeneity statistics associated with met-analyses."),
+                                        h6("Following Higgins and Thompson (2002), this application estimates heterogeneity statistics associated with meta-analyses."),
                                         h6("Simply upload a .csv file with the study ID, Ns, ORs, and/or OR CIs.")#,
                                         # h6("The data include 142 subjects from ZUMA-1 Cohorts 1, 2, and 4 (Phase 2 subjects only), and serum samples collected at Baseline, Day 0, Day 1, Day 3, and Day 5.")
                               )
@@ -146,14 +146,19 @@ server <- function(input, output) {
         
         dat3 <- read.csv(file$datapath, header = input$header)
         if(sum(is.na(dat3$Num_Cases) == 0)){
-            dat4 <- dat3 %>% mutate(CasesNoExp = Num_Cases - Exposed_Cases,
-                                  ControlsNoExp = Num_Controls - Exposed_Controls)
-            dat4 <- dat4 %>% mutate(OR_calc = (Exposed_Cases*ControlsNoExp)/(Exposed_Controls*CasesNoExp))
+            dat4 <- dat3 %>% mutate(NoExposure_Cases = Num_Cases - Exposed_Cases,
+                                  NoExposure_Controls = Num_Controls - Exposed_Controls)
+            dat4 <- dat4 %>% mutate(OR_calc = (Exposed_Cases*NoExposure_Controls)/(Exposed_Controls*NoExposure_Cases))
             dat4 <- dat4 %>% mutate(logOR_calc = log(OR_calc),
-                                  logOR_SEapprox = sqrt((1/Exposed_Cases) + (1/Exposed_Controls) + (1/CasesNoExp) + (1/ControlsNoExp)))
+                                  logOR_SEapprox = sqrt((1/Exposed_Cases) + (1/Exposed_Controls) + (1/NoExposure_Cases) + (1/NoExposure_Controls)))
             
-            return(dat4[,-c(which(colnames(dat2)=="OR"),which(colnames(dat2)=="OR_lower"),which(colnames(dat2)=="OR_upper"))])
-        } else(return(dat3))
+            colIds <- c(which(colnames(dat4)=="OR"),which(colnames(dat4)=="OR_lower"),which(colnames(dat4)=="OR_upper"))
+            contents2 <- dat4[,-colIds]
+            contents2 <- contents2[,c(1:3,6,4:5,7:10)]
+            return(contents2)
+        } else{
+            return(dat3)
+            }
     })
     
     data <- reactive({
