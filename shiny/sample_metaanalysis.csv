@@ -1,0 +1,7 @@
+﻿StudyID,Num_Cases,Exposed_Cases,Num_Controls,Exposed_Controls,OR,OR_lower,OR_upper
+WL,155,63,155,29,2.98,1.78,4.98
+Fulton,198,103,225,112,1.09,0.75,1.6
+Savitz,97,27,259,52,1.54,0.9,2.63
+London,211,122,205,92,1.68,1.14,2.48
+Linet,402,111,402,113,0.98,0.72,1.33
+Petridou,117,11,202,14,1.39,0.61,3.18
