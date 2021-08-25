@@ -5,8 +5,8 @@ account: kspeth
 server: connect-kite.gilead.com
 hostUrl: https://connect-kite.gilead.com/__api__
 appId: 192
-bundleId: 676
+bundleId: 678
 url: https://connect-kite.gilead.com/meta_analysis_heterogeneity_calculator/
-when: 1629815201.77554
+when: 1629822329.92549
 asMultiple: FALSE
 asStatic: FALSE

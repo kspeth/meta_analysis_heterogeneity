@@ -269,8 +269,8 @@ server <- function(input, output) {
             
             ## I^2 estimate and 95% CI
             #100*I_sq(H,CI[1],CI[2]) ## These estimates of I^2 and uncertainty intervals are found in Table 2 of Higgins et al (2003) for All Studies
-            data <- data.frame(k = k,
-                                FE_estOR = FE_estOR,
+            data <- data.frame(Num_Studies = k,
+                                #FE_estOR = FE_estOR,
                                 CochranQ = Q1,
                                 df = df,
                                 Q_pval = round(Q_pval,digits=3),
